@@ -1,0 +1,44 @@
+.qr-generator-form {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.qr-generator-form h2 {
+  text-align: center;
+}
+
+.qr-generator-form form > div {
+  margin-bottom: 15px;
+}
+
+.qr-generator-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.qr-generator-form input,
+.qr-generator-form select,
+.qr-generator-form button {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+}
+
+.qr-generator-form button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.qr-generator-form button:hover {
+  background-color: #0056b3;
+}
+
+.qr-generator-form .react-datepicker-wrapper {
+  width: 100%;
+}
