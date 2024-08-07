@@ -20,8 +20,8 @@ const Register = () => {
       })
       .then((response) => {
         if (response.data.user) {
-          localStorage.setItem("user", JSON.stringify(response.data.user));
-          localStorage.setItem("token", JSON.stringify(response.data.auth));
+          // localStorage.setItem("user", JSON.stringify(response.data.user));
+          // localStorage.setItem("token", JSON.stringify(response.data.auth));
           console.log(response.data);
           navigate("/login");
           toast.success("User register successfully");
