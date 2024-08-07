@@ -5,6 +5,7 @@ const db = require('./models/connect')
 const compnentRouter = require('./routes/componentroutes');
 const userRouter = require('./routes/users');
 const cors = require('cors');
+const PORT = process.env.PORT;
 
 
 const app = express();
@@ -23,6 +24,6 @@ app.use('/user',userRouter);
 
 
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
     console.log("server is running at port-3000 ");
 })

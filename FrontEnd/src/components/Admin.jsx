@@ -9,11 +9,9 @@ import { toast } from "react-toastify";
 import Footer from "./Footer";
 
 function Admin() {
-
   const [component, setComponent] = useContext(componentsContext);
-  
+
   const qrRef = useRef(null);
-  
 
   const handleDownloadQR = (qrValue) => {
     if (qrValue) {
@@ -30,7 +28,7 @@ function Admin() {
     try {
       const response = await axios.delete(`/component/${id}`);
       // console.log("deleted successfully");
-      toast.success("Component deleted Successfully")
+      toast.success("Component deleted Successfully");
     } catch (error) {
       console.log(error);
     }
@@ -62,10 +60,9 @@ function Admin() {
                   {row.date_received.toString().slice(0, 10)} /{" "}
                   {row.number_received}
                 </td>
-                <td>{row.balance_items-1}</td>
-                <td>{row.balance_items==0?"delevered":"penging"}</td>
+                <td>{row.balance_items - 1}</td>
+                <td>{row.balance_items == 0 ? "delevered" : "penging"}</td>
                 <td>
-                 
                   {row.qr_identifier && (
                     <div ref={qrRef}>
                       <QRCode
@@ -98,10 +95,8 @@ function Admin() {
           )}
         </tbody>
       </table>
-      <Footer/>
-
+      <Footer />
     </div>
-    
   );
 }
 

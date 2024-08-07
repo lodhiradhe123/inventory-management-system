@@ -5,19 +5,19 @@ const { createComponent, getAllComponents, getSingleComponent, componentQrIdenti
 
 
 // Create a new component
-router.post('/',verifyToken, createComponent);
+router.post('/',  createComponent);
 
 // // Get all components
-router.get('/',verifyToken, getAllComponents);
+router.get('/', getAllComponents);
 
 // // Get a single component by QR identifier
 router.get('/:id',verifyToken, getSingleComponent);
 
 // get a single component with qr_scannerid
-router.get('/scanner/:qr_identifier', componentQrIdentifire);
+router.get('/scanner/:qr_identifier',verifyToken, componentQrIdentifire);
 
 // // Update a component by QR identifier
-router.put('/update/:id',verifyToken,  updateComponent);
+router.put('/update/:id',verifyToken, updateComponent);
 
 // // Delete a component by id
 router.delete('/:id',verifyToken, deleteComponent);

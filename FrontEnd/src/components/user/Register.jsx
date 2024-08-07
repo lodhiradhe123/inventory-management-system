@@ -8,28 +8,33 @@ const Register = () => {
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const navigate=useNavigate()
-
-
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post("/user",{
+    axios
+      .post("/user", {
         name,
         email,
-        password
-    }).then((response)=>{
-        localStorage.setItem("user", JSON.stringify(response.data.user))
-        localStorage.setItem("token", JSON.stringify(response.data.auth))
-        console.log(response.data);
-        navigate('/login')
-        toast.success("User register successfully")
-    }).catch((err)=>{
+        password,
+      })
+      .then((response) => {
+        if (response.data.user) {
+          localStorage.setItem("user", JSON.stringify(response.data.user));
+          localStorage.setItem("token", JSON.stringify(response.data.auth));
+          console.log(response.data);
+          navigate("/login");
+          toast.success("User register successfully");
+        }else{
+          toast.success("User registration failled 😒");
+
+        }
+      })
+      .catch((err) => {
         console.log(err.message);
-    })
-    
+      });
   };
-//   console.log(name,email,password);
+  //   console.log(name,email,password);
 
   return (
     <div className="register-container">

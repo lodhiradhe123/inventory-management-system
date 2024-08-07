@@ -12,21 +12,21 @@ const Login = () => {
     window.location.reload();
   };
 
-  //   const handleChange = (e) => {
-  //     setFormData({ ...formData, [e.target.name]: e.target.value });
-  //   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
       .post("/user/login", { email, password })
       .then((res) => {
-        localStorage.setItem("user", JSON.stringify(res.data.user));
-        localStorage.setItem("token", JSON.stringify(res.data.auth));
-        toast.success("User Login successfully");
-        navigate("/admin");
-        refreshPage()
-      
+        if (res.data.user == null) {
+          toast.success("User not found !");
+        } else {
+          console.log(res.data.user);
+          localStorage.setItem("user", JSON.stringify(res.data.user));
+          localStorage.setItem("token", JSON.stringify(res.data.auth));
+          toast.success("User Login successfully");
+          navigate("/admin");
+          refreshPage();
+        }
       })
       .catch((err) => {
         console.log(err.message);

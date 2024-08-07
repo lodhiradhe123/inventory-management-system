@@ -9,11 +9,11 @@ exports.registerUser = async (req, res, next) => {
         const user = await User(req.body)
         await user.save();
         // res.send(user)
-        Jwt.sign({ user }, JwtKey, { expiresIn: "2h" }, (err, token) => {
+        Jwt.sign({ user }, JwtKey, (err, token) => {
             if (err) {
                 res.send("something went wrong !")
             }
-            res.send({ user, auth: token })
+            res.send({ user:user, auth: token })
         })
     } catch (error) {
         res.send(error.message)
@@ -25,11 +25,12 @@ exports.loginUser = async (req, res, next) => {
         try {
             const user = await User.findOne(req.body).select("-password")
             // res.send(user);
-            Jwt.sign({ user }, JwtKey, { expiresIn: "1d" }, (err, token) => {
+            Jwt.sign({ user }, JwtKey, { expiresIn: "2h" }, (err, token) => {
                 if (err) {
                     res.send("something went wrong !")
+                    localStorage.setItem('token', token)
                 }
-                res.send({ user, auth: token })
+                res.send({ user:user, auth: token })
             })
         } catch (err) {
             res.send(err.message)
