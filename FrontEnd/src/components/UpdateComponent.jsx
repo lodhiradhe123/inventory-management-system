@@ -1,40 +1,68 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import axios from 'axios';
-import QRCode from 'qrcode.react';
+import axios from '../../utils/Axios';
+import { toast } from "react-toastify";
+import { useNavigate, useParams } from 'react-router-dom';
+
 
 const QRGeneratorForm = () => {
-  const [component, setComponent] = useState('C1');
+   
+
+  const [component, setComponent] = useState();
   const [dateReceived, setDateReceived] = useState(new Date());
   const [numberReceived, setNumberReceived] = useState(0);
+  const [part, setPart] = useState('P1234');
   const [qrValue, setQrValue] = useState('');
 
-  const handleGenerateQR = async () => {
+  const navigate =useNavigate()
+
+  const params =useParams()
+ 
+
+//   const getData = async()=>{
+//     axios
+//      const response= await  axios.get(`/component/${params.id}`);
+//      console.log(response.data);
+//      setComponent(response.data.name)
+//      setDateReceived(response.data.name)
+      
+//   }
+
+ 
+
+  const updateHandler = async (id) => {
+    // alert(id)
+    // console.log(component,dateReceived,numberReceived,part)
     try {
-      const response = await axios.post('http://localhost:3000/api/components', {
-        s_no: Math.floor(Math.random() * 1000), // Just for demonstration, you can change this logic
+      const response = await axios.put(`/component/update/${id}`, {
         name: component,
-        part_number: 'P1234', // You can customize this as needed
+        part_number: part, 
         date_received: dateReceived,
         number_received: numberReceived,
         balance_items: numberReceived,
         qr_identifier: `${component}-${Date.now()}`
-      });
 
-      if (response.status === 201) {
+      });
+  
+      if (response) {
         setQrValue(response.data.qr_identifier);
-        alert('QR code generated and data saved to database!');
+
+        navigate("/admin")
+        toast.success("updated successfully ");
+
       }
+    
     } catch (error) {
       console.error('Error generating QR code:', error);
       alert('Error generating QR code. Please try again.');
     }
   };
 
+
   return (
     <div className="qr-generator-form">
-      <h2>QR Generator</h2>
+      <h2>Update</h2>
       <form>
         <div>
           <label>Component:</label>
@@ -57,17 +85,18 @@ const QRGeneratorForm = () => {
             value={numberReceived}
             onChange={(e) => setNumberReceived(e.target.value)}
           />
+          <label>Part Number:</label>
+          <input
+            type="text"
+            value={part}
+            onChange={(e) => setPart(e.target.value)}
+          />
         </div>
-        <button type="button" onClick={handleGenerateQR}>
-          Generate QR
+        <button type="button" onClick={()=>updateHandler(params.id)}>
+          Update
         </button>
       </form>
-      {qrValue && (
-        <div>
-          <h3>Generated QR Code:</h3>
-          <QRCode value={qrValue} />
-        </div>
-      )}
+     
     </div>
   );
 };

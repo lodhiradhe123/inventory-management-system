@@ -1,0 +1,290 @@
+
+
+*{
+  padding: 0%;
+  margin: 0%;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  /* overflow: auto; */
+}
+html,body{
+  width: 100%;
+  height: 100%;
+}
+.qr-generator-form {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.qr-generator-form h2 {
+  text-align: center;
+}
+
+.qr-generator-form form > div {
+  margin-bottom: 15px;
+  margin-right: 15px;
+}
+
+.qr-generator-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.qr-generator-form input,
+.qr-generator-form select,
+.qr-generator-form button {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+}
+
+.qr-generator-form button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.qr-generator-form button:hover {
+  background-color: #0056b3;
+}
+
+.qr-generator-form .react-datepicker-wrapper {
+  width: 100%;
+}
+
+/*scanner css  */
+.qr-scanner-form {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.qr-scanner-form h2 {
+  text-align: center;
+}
+
+.qr-scanner-form .error {
+  color: red;
+  margin-top: 10px;
+}
+
+.qr-scanner-form .react-qr-reader-container {
+  width: 100%;
+  height: auto;
+}
+
+.qr-scanner-form div {
+  margin-top: 15px;
+}
+
+.qr-scanner-form h3 {
+  margin-bottom: 10px;
+}
+
+.qr-scanner-form p {
+  margin: 5px 0;
+}
+
+/* nav */
+#nav {
+  width: 100%;
+  height: 60px;
+  /* margin: 2vw 5vw; */
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 10vw;
+  font-family: sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+  background-color: rgb(10, 18, 15);
+  color: white;
+  margin-bottom: 30px;
+  /* position: relative; */
+}
+#nav a{
+  color:white ;
+  text-decoration: none;
+}
+.link{
+  /* background-color: #0056b3; */
+  width: 40%;
+  display: flex;
+  gap: 3vw;
+}
+.btn{
+  width: 20%;
+  display: flex;
+  gap: 1vw;
+  overflow: hidden;
+  /* background-color: red; */
+}
+
+.login{
+  overflow: hidden;
+  font-size: .9rem;
+  font-weight:600 ;
+  color: white;
+  padding: 1vw 1.5vw;
+  background: transparent;
+  border-radius: 2px;
+  border:none;
+
+}
+.register{
+  overflow: hidden;
+
+  font-size: .9em;
+  font-weight:600 ;
+  color: white;
+  padding: 1vw 1.5vw;
+  background: transparent;
+  border: none;
+  border-radius: 2px;
+}
+
+#nav h3{
+  /* background-color: rosybrown; */
+  color: royalblue;
+  text-transform: capitalize;
+}
+.inven{
+  width: 35px;
+  height: 35px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right:50px ;
+}
+
+/* table css */
+.Admin{
+  overflow: auto;
+  max-height: 60vh;
+}
+table {
+  margin: 0 auto;
+  border-collapse: collapse;
+  width: 80%;
+  border: 1px solid #dddddd;
+ font-size: 1.3vw;
+}
+
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+td{
+  text-align: left;
+  padding: 8px;
+ height: 10vh;
+
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+
+
+tr:hover {
+  background-color: #efefef;
+}
+
+#qrimage{
+  width: 200px;
+  height: 200px;
+  font-size: 20vw;
+  background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .qr-generator-form, .qr-scanner-form {
+    width: 90%;
+    margin: 20px auto;
+    padding: 10px;
+  }
+
+  #nav {
+   
+    align-items: flex-start;
+  }
+  .inven{
+    width: 35px;
+    height: 35px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top:5px ;
+  }
+  
+
+  .link, .btn {
+    flex-direction: column;
+    gap: 2vw;
+  }
+
+  table {
+    width: 100%;
+    font-size: 2vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .qr-generator-form, .qr-scanner-form {
+    width: 100%;
+    margin: 10px auto;
+    padding: 5px;
+  }
+
+  table {
+    
+    font-size: 3vw;
+  }
+}
+
+
+/* edit delete button css */
+.editbtn{
+  border: none;
+  background-color: transparent;
+  font-size: large;
+  margin-right: 1vw;
+}
+.deletebtn{
+  border: none;
+  background-color: transparent;
+  font-size: large;
+}
+
+.rightnav{
+margin: 0px 10px;  
+color: white;
+}
+
+/* footer css */
+
+.footer{
+  width: 100%;
+  height: 20vh;
+  background-color: black;
+  color: white;
+  position: absolute;
+  bottom: 0%;
+  text-align: center;
+  padding: 2vw;
+}
