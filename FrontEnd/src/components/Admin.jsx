@@ -10,25 +10,50 @@ import Footer from "./Footer";
 
 function Admin() {
   const [component, setComponent] = useContext(componentsContext);
+  const qrRefs = useRef({});
 
-  const qrRef = useRef(null);
-
-  const handleDownloadQR = (qrValue) => {
-    if (qrValue) {
-      const canvas = qrRef.current.querySelector("canvas");
-      const url = canvas.toDataURL("image/png");
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = "qr-code.png";
-      link.click();
+  // const handleDownloadQR = () => {
+  //   const canvas = qrRef.current.querySelector("canvas");
+  //   const url = canvas.toDataURL("image/png");
+  //   const link = document.createElement("a");
+  //   link.href = url;
+  //   link.download = "qr-code.png";
+  //   link.click();
+  // };
+  // const handleDownloadQR = () => {
+  //   const canvas = qrRef.current.querySelector("canvas");
+  //   const pngUrl = canvas
+  //     .toDataURL("image/png")
+  //     .replace("image/png", "image/octet-stream");
+  //   let downloadLink = document.createElement("a");
+  //   downloadLink.href = pngUrl;
+  //   downloadLink.download = "qr-code.png";
+  //   document.body.appendChild(downloadLink);
+  //   downloadLink.click();
+  //   document.body.removeChild(downloadLink);
+  // };
+  const handleDownloadQR = (qrIdentifier) => {
+    const canvas = qrRefs.current[qrIdentifier]?.querySelector("canvas");
+    if (canvas) {
+      const pngUrl = canvas
+        .toDataURL("image/png")
+        .replace("image/png", "image/octet-stream");
+      const downloadLink = document.createElement("a");
+      downloadLink.href = pngUrl;
+      downloadLink.download = `${qrIdentifier}.png`;
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
     }
   };
 
   const deleteHandler = async (id) => {
     try {
       const response = await axios.delete(`/component/${id}`);
-      // console.log("deleted successfully");
-      toast.success("Component deleted Successfully");
+      console.log(response.data.component);
+      toast.success(
+        `${response.data.component.name} component deleted Successfully`
+      );
     } catch (error) {
       console.log(error);
     }
@@ -64,12 +89,12 @@ function Admin() {
                 <td>{row.balance_items == 0 ? "delevered" : "penging"}</td>
                 <td>
                   {row.qr_identifier && (
-                    <div ref={qrRef}>
+                    <div ref={(el) => (qrRefs.current[row.qr_identifier] = el)}>
                       <QRCode
                         onClick={() => handleDownloadQR(row.qr_identifier)}
                         value={row.qr_identifier}
                         size={256}
-                        style={{ width: "100px", height: "100px" }}
+                        style={{ width: "100px", height: "100px",cursor: "pointer" }}
                       />
                     </div>
                   )}

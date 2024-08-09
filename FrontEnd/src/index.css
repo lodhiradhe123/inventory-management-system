@@ -60,7 +60,7 @@ html,body{
 /*scanner css  */
 .qr-scanner-form {
   max-width: 400px;
-  margin: 50px auto;
+  /* margin: 50px auto; */
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -216,6 +216,12 @@ tr:hover {
     margin: 20px auto;
     padding: 10px;
   }
+  .scansection{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+  }
 
   #nav {
    
@@ -287,4 +293,11 @@ color: white;
   bottom: 0%;
   text-align: center;
   padding: 2vw;
+}
+
+/* scan section */
+.scansection{
+  display: flex;
+  justify-content: center;
+  gap: 10px;
 }

@@ -49,6 +49,25 @@ exports.componentQrIdentifire=async (req, res) => {
     }
 }
 
+exports.updateComponentQrIdentifire= async (req, res) => {
+    const { s_no, name, part_number, date_received, number_received, date_dispatch, number_dispatched, balance_items } = req.body;
+    try {
+        // const component = await Component.findOne({qr_identifier:req.params.qr_identifier})
+
+        const component = await Component.findOneAndUpdate(
+            { qr_identifier: req.params.id },
+            { s_no, name, part_number, date_received, number_received, date_dispatch, number_dispatched, balance_items },
+            { new: true }
+        );
+        if (component) {
+            res.status(200).json(component);
+        } else {
+            res.status(404).json({ message: 'Component not found' });
+        }
+    } catch (err) {
+        res.status(400).json({ message: err.message });
+    }
+}
 exports.updateComponent= async (req, res) => {
     const { s_no, name, part_number, date_received, number_received, date_dispatch, number_dispatched, balance_items } = req.body;
     try {
