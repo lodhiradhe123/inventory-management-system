@@ -24,6 +24,7 @@ const QRScannerForm = () => {
             await axios.put(`/component/update/${data}`, {
               ...component,
               balance_items: component.balance_items - 1,
+              date_dispatch:Date.now()
             });
           } else {
             setError("No items left to dispatch.");

@@ -18,6 +18,8 @@ const Login = () => {
       .post("/user/login", { email, password })
       .then((res) => {
         if (res.data.user == null) {
+          setEmail("");
+          setPassword("");
           toast.success("User not found !");
         } else {
           console.log(res.data.user);
