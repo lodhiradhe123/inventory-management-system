@@ -7,6 +7,7 @@ const QRScannerForm = () => {
   const [scannedData, setScannedData] = useState("");
   const [scannedInfo, setScannedInfo] = useState(null);
   const [error, setError] = useState("");
+  const [isCameraOn, setIsCameraOn] = useState(false);
 
   const handleScan = async (data) => {
     console.log(data);
@@ -51,25 +52,30 @@ const QRScannerForm = () => {
       }
     }
   };
+  const toggleCamera = () => {
+    setIsCameraOn(!isCameraOn);
+  };
 
   return (
     <div className="scansection">
       <div className="qr-scanner-form">
         <h2>QR Scanner</h2>
-        <QrReader
-          delay={300}
-          onError={handleError}
-          onResult={(result, error) => {
-            if (result) {
-              handleScan(result?.text);
-            }
-          }}
-          style={{ width: "100%" }}
-        />
-        <button
-          onClick={() => setScannedData("")}
-          className="clearbtn"
-        ></button>
+        <button onClick={toggleCamera} >
+          {isCameraOn ? "Turn Camera Off" : "Turn Camera On"}
+        </button>
+        {isCameraOn && (
+          <QrReader
+            delay={300}
+            onError={handleError}
+            onResult={(result) => {
+              if (result) {
+                handleScan(result?.text);
+              }
+            }}
+            style={{ width: "100%" }}
+          />
+        )}
+
       </div>
       <div className="qr-scanner-form">
         <h3>Scan from Image</h3>
