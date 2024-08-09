@@ -35,7 +35,7 @@ const QRGeneratorForm = () => {
     // alert(id)
     // console.log(component,dateReceived,numberReceived,part)
     try {
-      const response = await axios.put(`/component/update/${id}`, {
+      const response = await axios.put(`/component/updateWithId/${id}`, {
         name: component,
         part_number: part, 
         date_received: dateReceived,
@@ -46,6 +46,7 @@ const QRGeneratorForm = () => {
       });
   
       if (response) {
+        console.log(response.data);
         setQrValue(response.data.qr_identifier);
 
         navigate("/admin")

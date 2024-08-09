@@ -75,7 +75,7 @@ const QRGeneratorForm = () => {
         </div>
         <div>
           <label>Date Received:</label>
-          <DatePicker selected={dateReceived} onChange={(date) => setDateReceived(date)} />
+          <DatePicker selected={dateReceived} onChange={(date) => setDateReceived(date)} maxDate={new Date()} />
         </div>
         <div>
           <label>Number of Items Received:</label>

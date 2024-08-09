@@ -50,7 +50,7 @@ function Admin() {
   const deleteHandler = async (id) => {
     try {
       const response = await axios.delete(`/component/${id}`);
-      console.log(response.data.component);
+      // console.log(response.data.component);
       toast.success(
         `${response.data.component.name} component deleted Successfully`
       );
@@ -80,12 +80,12 @@ function Admin() {
             component.map((row, index) => (
               <tr key={index}>
                 <td>{row.name}</td>
-                <td>{row.date_received.toString().slice(0, 10)}</td>
+                <td>{row.date_received.toString().slice(0, 10)}/{row.number_received}</td>
                 <td>
                   {row.date_received.toString().slice(0, 10)} /{" "}
-                  {row.number_received}
+                  {row.number_received-row.balance_items}
                 </td>
-                <td>{row.balance_items - 1}</td>
+                <td>{row.balance_items}</td>
                 <td>{row.balance_items == 0 ? "delevered" : "penging"}</td>
                 <td>
                   {row.qr_identifier && (

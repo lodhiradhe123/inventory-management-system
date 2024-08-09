@@ -20,7 +20,7 @@ router.get('/scanner/:qr_identifier',verifyToken, componentQrIdentifire);
 router.put('/update/:id',verifyToken, updateComponentQrIdentifire);
 
 // // Update a component by QR identifier
-router.put('/update/:id',verifyToken, updateComponent);
+router.put('/updateWithId/:id',verifyToken, updateComponent);
 
 // // Delete a component by id
 router.delete('/:id',verifyToken, deleteComponent);
