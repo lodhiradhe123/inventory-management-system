@@ -85,8 +85,8 @@ function Admin() {
                   {row.number_received}
                 </td>
                 <td>
-                  {row.date_dispatch.toString().slice(0, 10)} /
-                  {row.number_received - row.balance_items}
+                  {row.date_dispatch?row.date_dispatch.toString().slice(0, 10):"--------"} /
+                  { row.number_received - row.balance_items}
                 </td>
                 <td>{row.balance_items}</td>
                 <td>{row.balance_items == 0 ? "delevered" : "penging"}</td>

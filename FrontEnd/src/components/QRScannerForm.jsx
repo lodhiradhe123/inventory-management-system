@@ -101,7 +101,8 @@ const QRScannerForm = () => {
               Date Received:{" "}
               {new Date(scannedInfo.date_received).toLocaleDateString()}
             </p>
-            <p>Balance Items: {scannedInfo.balance_items}</p>
+            <p>Balance Items: {scannedInfo.balance_items>0?(scannedInfo.balance_items-1):(0)}</p>
+            <p>Dispatch Items: {scannedInfo.number_received>0?scannedInfo.number_received-scannedInfo.balance_items+1:0}</p>
           </div>
         )}
         {error && <p className="error">{error}</p>}

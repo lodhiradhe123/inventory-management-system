@@ -26,7 +26,7 @@ const QRGeneratorForm = () => {
         name: component,
         part_number: 'P1234', 
         date_received: dateReceived,
-        date_dispatch: dateReceived,
+        // date_dispatch: "no date received",
         number_received: numberReceived,
         balance_items: numberReceived,
         qr_identifier: `${component}-${Date.now()}`
